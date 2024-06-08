@@ -1,6 +1,6 @@
 {
   "name": "muhammadzaeemaltaf_adventure_game",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A CLI-based adventure game where you fight enemies, use health potions, and try to survive in the DeadZone.",
   "main": "index.js",
   "type": "module",

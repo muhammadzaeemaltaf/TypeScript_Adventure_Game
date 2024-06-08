@@ -4,9 +4,9 @@ import chalk from "chalk";
 // Declaration of variables
 let heroHealth = 100;
 let damageToHero = 25;
-let healthPortion = 3;
+let healthPotion = 3;
 let healHealth = 30;
-let heathProtionDropChance = 50;
+let heathPotionDropChance = 50;
 let enemyHealth = 75;
 let damageToEnemy = 50;
 // Declaration of enemy array
@@ -30,7 +30,7 @@ Game: while (gameRun) {
                 name: "opt",
                 type: "list",
                 message: "What do you like to do?",
-                choices: ["Attack", "Take Health Protion", "Run"],
+                choices: ["Attack", "Take Health Potion", "Run"],
             },
         ]);
         // Attack condition
@@ -64,17 +64,25 @@ Game: while (gameRun) {
                 process.exit();
             }
         }
-        // Health protion condition 
-        else if (ask.opt == "Take Health Protion") {
-            if (healthPortion > 0) {
-                heroHealth += healHealth;
-                healthPortion--;
-                console.log(`\nYou use health portion for heal ${healHealth} HP`);
-                console.log(`You now have ${heroHealth} HP.`);
-                console.log(`You have ${healthPortion} health protion left.\n`);
+        // Health potion condition
+        else if (ask.opt == "Take Health Potion") {
+            if (healthPotion > 0) {
+                if (heroHealth >= 75) {
+                    console.log(`\nYou cannot use health potion because you have enough HP.\nYou HP: ${heroHealth}.\n`);
+                }
+                else {
+                    heroHealth += healHealth;
+                    healthPotion--;
+                    if (heroHealth > 100) {
+                        heroHealth = 100;
+                    }
+                    console.log(`\nYou use health potion for heal ${healHealth} HP`);
+                    console.log(`You now have ${heroHealth} HP.`);
+                    console.log(`You have ${healthPotion} health potion left.\n`);
+                }
             }
             else {
-                console.log("\nYou have no health protion left. Defeat enemy to get heath protion.\n");
+                console.log("\nYou have no health potion left. Defeat enemy to get heath potion.\n");
             }
         }
         // Run condition
@@ -89,14 +97,14 @@ Game: while (gameRun) {
         console.log(chalk.green(chalk.italic(`You have ${heroHealth} HP left.\n`)));
         console.log(chalk.green("-".repeat(35)));
     }
-    // Drop health portion
-    if (enemyHealth <= 0 && heroHealth <= 40 && healthPortion < 3) {
+    // Drop health potion
+    if (enemyHealth <= 0 && heroHealth <= 40 && healthPotion < 3) {
         let randomNumber = Math.floor(Math.random() * 100 + 1);
-        if (randomNumber < heathProtionDropChance) {
-            healthPortion++;
-            console.log(chalk.green(`\n${enemy} give you one health portion.`));
+        if (randomNumber < heathPotionDropChance) {
+            healthPotion++;
+            console.log(chalk.green(`\n${enemy} give you one health potion.`));
             console.log(`You have ${heroHealth} HP left.`);
-            console.log(`Your health portion is ${healthPortion}.\n`);
+            console.log(`You have now ${healthPotion} health potion.\n`);
         }
     }
     console.log("");
