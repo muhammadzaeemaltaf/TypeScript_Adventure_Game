@@ -10,3 +10,10 @@
 - Use health potions to heal yourself.
 - Make strategic decisions to attack, heal, or run away.
 - Random enemy encounters for varied gameplay.
+
+## Installation and Usage
+
+To play the game, you can use the following `npx` command:
+
+```bash
+npx muhammadzaeemaltaf_adventure_game
